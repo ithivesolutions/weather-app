@@ -1,9 +1,9 @@
 const request = require('request')
 
-const weatherdtl = (lat, log, callback) => {
+const forecastdtl = (lat, log, callback) => {
     const url = `https://api.darksky.net/forecast/58a27f2eedc77d1fc47f66b7ebd0fed0/${lat},${log}?units=si`
 
-    request({ url: url, json: true }, (error, wresponse) => {
+    request({ url, json: true }, (error, wresponse) => {
 
         if (error) {
             callback('The weather service is not available', undefined);
@@ -19,5 +19,5 @@ const weatherdtl = (lat, log, callback) => {
 }
 
 module.exports = {
-    weatherdtl: weatherdtl
+    forecastdtl: forecastdtl
 }

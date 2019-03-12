@@ -1,15 +1,16 @@
-const ggeocodejs = require('./get-geocode')
-const gweatherjs = require('./get-weather')
+const ggeocodejs = require('./utils/get-geocode-destruct')
+const gforecastjs = require('./utils/get-forecast-destruct')
 
 const address = 'Melbourne'
 
-ggeocodejs.geocode(address, (error, {latitude, longtitude}) => {
+ggeocodejs.geocode(address, (error, { latitude, longtitude }) => {
     if (!error) {
         console.log('GeoCode Details: ', latitude, longtitude);
-        gweatherjs.weatherdtl(latitude, longtitude, (error, weadata) => {
-            if (!error){
-                console.log('Weather Report: ', weadata);
-            } else{
+        gforecastjs.forecastdtl(latitude, longtitude, (error, { Temperature, Preciption }) => {
+            if (!error) {
+                console.log('Temperature of the day: ', Temperature);
+                console.log('Chance of rain: ', Preciption);
+            } else {
                 console.log('Error-weatcode-msg: ', error);
             }
         })
