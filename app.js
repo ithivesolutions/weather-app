@@ -7,8 +7,8 @@ request({ url: geocode, json: true }, (error, gresponse) => {
 
     if (error) {
         console.log("The geocode service is not availabe")
-    } else if (gresponse.body.error) {
-        console.log("Unable to locate the location")
+    } else if (gresponse.body.features.length === 0) {
+        console.log("Unable to locate the location - Try another location")
     }
     else {
         console.log(`Melbourne's Longitude = ${gresponse.body.features[0].center[0]} and its Latitude is = ${gresponse.body.features[0].center[1]}`)
